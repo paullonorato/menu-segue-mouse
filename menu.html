@@ -1,0 +1,79 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+$(document).ready(function() {
+  var pos = $('li.current-menu-item a').position().left;
+	var aSize = $('li.current-menu-item a').css("width");
+	
+	$('.underline').stop().animate({
+		opacity: 1,
+		width: aSize,
+		left: pos
+	},10);	
+	
+	var posSeta = $('.underline').position().left;
+	
+	$('.menu-item a').mouseenter(function(){
+			var pos = $(this).position().left; // posição do link
+			var aSize = $(this).css("width"); // tamanho do link
+			var aPx = aSize.substr(0,2); // substr para utilizar o valor sem virgulas
+			
+			var setaSize = $('.underline').css("width"); // pega o valor da div underline
+			var setaPx = setaSize.substr(0,2); // substr para utilizar o valor sem virgulas
+			
+			var alignSeta = (aPx / 2) - (setaPx / 2);
+			
+			$('.underline').stop().animate({
+				opacity: 1,
+				width: aSize,
+				left: pos
+			},500);			
+	});
+	
+	$('.menu-item a').mouseleave(function(){
+		var pos = $('li.current-menu-item a').position().left; // posição do link
+		var aSize = $('li.current-menu-item a').css("width"); // tamanho do link
+		
+		$('.underline').stop().animate({
+			opacity: 1,
+			width: aSize,
+			left: pos
+		},500);			
+	});
+});
+
+</script>
+<style>
+.underline{
+position: absolute;
+margin-top: 45px;
+left: 0;
+box-sizing: border-box;
+height: 2px;
+width: 10px;
+background-color: #a00;
+}
+
+ul{
+display: inline;
+}
+
+ul li{
+float: left;
+list-style-type: none;
+margin: 20px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="underline"></div>
+<ul>
+<li class="menu-item current-menu-item"><a href="#" class="mn1">Home</a></li>
+<li class="menu-item"><a href="#" class="mn2" >Carros</a></li>
+<li class="menu-item"><a href="#" class="mn3">Fale Conosco</a></li>
+</ul>
+</body>
+</html>
